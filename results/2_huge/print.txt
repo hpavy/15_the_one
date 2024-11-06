@@ -1,0 +1,17 @@
+Nouveau modèle
+
+Nouveau modèle
+
+--------------------------
+Starting at epoch: 0
+--------------------------
+---------------------
+Epoch 1/2000 :
+Train : loss: 6.607e-01, data: 6.576e-01, pde: 3.085e-03
+Test  : loss: 8.910e-01, data: 8.885e-01, pde: 2.505e-03
+time: 178s
+---------------------
+Epoch 2/2000 :
+Train : loss: 6.277e-01, data: 6.246e-01, pde: 3.119e-03
+Test  : loss: 8.197e-01, data: 8.153e-01, pde: 4.357e-03
+time: 190s
