@@ -61,8 +61,8 @@ def charge_data(hyper_param, param_adim):
     X_full = np.array([x_norm_full, y_norm_full, t_norm_full], dtype=np.float32).T
     U_full = np.array([u_norm_full, v_norm_full, p_norm_full], dtype=np.float32).T
 
-    x_int = (x_norm_full.max()-x_norm_full.min())/6
-    y_int = (y_norm_full.max()-y_norm_full.min())/6
+    x_int = (x_norm_full.max()-x_norm_full.min())/hyper_param['nb_points_axes']
+    y_int = (y_norm_full.max()-y_norm_full.min())/hyper_param['nb_points_axes']
     X_train = np.zeros((0, 3))
     U_train = np.zeros((0, 3))
     for time in np.unique(t_norm_full):
@@ -75,25 +75,27 @@ def charge_data(hyper_param, param_adim):
                 & (y_norm_full > y_norm_full.min()+(y_num)*y_int)
                 & (t_norm_full == time)
             )
-            indice = np.random.choice(np.arange(len(x_norm_full[masque])), size=1, replace=False)
-            new_x=np.array(
-                [
-                    x_norm_full[masque][indice],
-                    y_norm_full[masque][indice],
-                    t_norm_full[masque][indice]
-                    
-                ]
-                ).reshape(-1,3)
-            new_y = np.array(
-                [
-                    u_norm_full[masque][indice],
-                    v_norm_full[masque][indice],
-                    p_norm_full[masque][indice]
-                    
-                ]
-                ).reshape(-1,3)
-            X_train = np.concatenate((X_train, new_x))
-            U_train = np.concatenate((U_train, new_y))
+            if len(x_norm_full[masque]) > 0:
+                print('ah')
+                indice = np.random.choice(np.arange(len(x_norm_full[masque])), size=1, replace=False)
+                new_x=np.array(
+                    [
+                        x_norm_full[masque][indice],
+                        y_norm_full[masque][indice],
+                        t_norm_full[masque][indice]
+                        
+                    ]
+                    ).reshape(-1,3)
+                new_y = np.array(
+                    [
+                        u_norm_full[masque][indice],
+                        v_norm_full[masque][indice],
+                        p_norm_full[masque][indice]
+                        
+                    ]
+                    ).reshape(-1,3)
+                X_train = np.concatenate((X_train, new_x))
+                U_train = np.concatenate((U_train, new_y))
 
     mean_std = {
         "u_mean": u_full.mean(),
