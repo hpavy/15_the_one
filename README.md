@@ -1,1 +1,2 @@
-On essaye avec uniquement la data en z=0 voir si ça change beaucoup 
+Première fois où ça fonctionne avec les datas de John !!! 
+Fonctionne à partir de 5
